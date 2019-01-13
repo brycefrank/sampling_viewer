@@ -1,0 +1,33 @@
+{
+  "name": "sae_viewer",
+  "version": "1.0.0",
+  "description": "Small area estimation (SAE) is a branch of sampling theory that producees estimates and measures of \r uncertainty for small subpopulations in a larger study area. Much of the SAE literature is written for a technical\r audience. `SAE_viewer` is a small interactive Javascript visualization that [will eventually] illustrate the core\r principles of SAE.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "npm run build && webpack-dev-server --port=8000"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycefrank/SAE_viewer.git"
+  },
+  "author": "Bryce Frank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brycefrank/SAE_viewer/issues"
+  },
+  "homepage": "https://github.com/brycefrank/SAE_viewer#readme",
+  "dependencies": {
+    "d3": "^5.7.0",
+    "phaser": "^3.15.1"
+  },
+  "devDependencies": {
+    "raw-loader": "^1.0.0",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
