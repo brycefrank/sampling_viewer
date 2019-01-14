@@ -22,6 +22,14 @@
   "homepage": "https://github.com/brycefrank/SAE_viewer#readme",
   "dependencies": {
     "d3": "^5.7.0",
+    "esm": "^3.0.84",
+    "mathjs": "^5.4.1",
+    "ndarray": "^1.0.18",
+    "ndarray-cholesky-factorization": "^1.0.2",
+    "ndarray-complex": "^1.0.3",
+    "ndarray-gemm": "^1.0.0",
+    "ndarray-ops": "^1.2.2",
+    "ndarray-scratch": "^1.2.0",
     "phaser": "^3.15.1"
   },
   "devDependencies": {
