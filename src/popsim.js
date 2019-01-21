@@ -71,6 +71,10 @@ export function sim_x(height, width) {
     var x = pool.zeros([N, 1]);
     gemm(x, B, z);
 
+    // Round to nearest tenth
+    for (var i = 0; i < x.shape[0]; i ++) {
+        x.set(i, 0, Math.round(x.get(i, 0) * 100) / 100);
+    }
+
     return(x)
 }
-
