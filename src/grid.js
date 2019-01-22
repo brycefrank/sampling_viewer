@@ -5,10 +5,9 @@ import * as d3 from 'd3';
 var grid_height = 12;
 var grid_width = 12;
 var cell_size = 32;
-var cells = sim_x(grid_height, grid_width);
+var cells = sim_x(grid_height, grid_width, 0, 10);
 
 // Cell coloring
-var color_scale = d3.scaleSequential().domain([-3, 3]).interpolator(d3.interpolateViridis);
 
 
 function ndarray_to_array(nda) {
@@ -24,7 +23,9 @@ function ndarray_to_array(nda) {
     return arr
 }
 
-cells = ndarray_to_array(cells);
+export var cells = ndarray_to_array(cells);
+var color_scale = d3.scaleSequential().domain([d3.min(cells, function(a) {return d3.min(a)}),
+    d3.max(cells, function(a) {return d3.max(a)})]).interpolator(d3.interpolateViridis);
 
 var svg = d3.select("body")
     .append("svg")

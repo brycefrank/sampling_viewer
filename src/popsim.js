@@ -15,10 +15,10 @@ function rnorm(mu, sigma) {
     return randn_bm() * sigma + mu
 }
 
-function n_rnorm(n) {
+function n_rnorm(n, mu=0, sigma=1) {
     const pop = [];
     for (var i = 0; i < n; i++) {
-        pop.push(rnorm(0, 1))
+        pop.push(rnorm(mu, sigma))
     }
 
     return ndarray(pop, [n, 1]);
@@ -59,9 +59,10 @@ function inverse_dist_matrix(dist_matrix, c=0) {
     return dist_matrix
 }
 
-export function sim_x(height, width) {
+export function sim_x(height, width, mu, sigma) {
     var N = height * width;
-    var z = n_rnorm(N);
+    var z = n_rnorm(N, mu, sigma);
+    console.log(z);
 
     // Cholesky decomposition
     var inverse_dist = inverse_dist_matrix(dist_matrix(height, width), 0.7);
@@ -73,7 +74,7 @@ export function sim_x(height, width) {
 
     // Round to nearest tenth
     for (var i = 0; i < x.shape[0]; i ++) {
-        x.set(i, 0, Math.round(x.get(i, 0) * 100) / 100);
+        x.set(i, 0, (Math.round(x.get(i, 0) * 100) / 100) + 50);
     }
 
     return(x)
