@@ -39,7 +39,7 @@ var div = d3.select("body").append("div")
 
 
 var j = -1;
-svg.selectAll("rect")
+export var grid = svg.selectAll("rect")
     .data(cells)
     .enter()
     .selectAll("rect") // these
@@ -52,15 +52,15 @@ svg.selectAll("rect")
     .attr('fill', function (d) { return color_scale(d)})
     .attr('width', cell_size)
     .attr('height', cell_size)
-    .attr("stroke", "white")
-    .on("mouseover", function (d) {
-        div.transition()
-            .duration(200)
-            .style("opacity", 0.9);
-        div .html(d)
-            .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY - 28) + "px")
-    })
-;
+    .attr("stroke", "white");
+    // TODO disabling for now
+    //.on("mouseover", function (d) {
+    //    div.transition()
+    //        .duration(200)
+    //        .style("opacity", 0.9);
+    //    div .html(d)
+    //        .style("left", (d3.event.pageX) + "px")
+    //        .style("top", (d3.event.pageY - 28) + "px")
+    //});
 
 

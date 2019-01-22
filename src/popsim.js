@@ -62,7 +62,6 @@ function inverse_dist_matrix(dist_matrix, c=0) {
 export function sim_x(height, width, mu, sigma) {
     var N = height * width;
     var z = n_rnorm(N, mu, sigma);
-    console.log(z);
 
     // Cholesky decomposition
     var inverse_dist = inverse_dist_matrix(dist_matrix(height, width), 0.7);
