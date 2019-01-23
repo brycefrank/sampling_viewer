@@ -2,8 +2,8 @@ import { sim_x } from './popsim';
 import * as d3 from 'd3';
 
 // Grid dimensions
-var grid_height = 12;
-var grid_width = 12;
+var grid_height = 16;
+var grid_width = 16;
 var cell_size = 32;
 var cells = sim_x(grid_height, grid_width, 0, 10);
 
@@ -50,9 +50,9 @@ export var grid = svg.selectAll("rect")
     .attr("y", function(d, i) { if (i == 0) { j ++}; return (j % grid_width) * cell_size; })
     .attr("x", function(d, i) { return (i % grid_height) * cell_size; })
     .attr('fill', function (d) { return color_scale(d)})
-    .attr('width', cell_size)
-    .attr('height', cell_size)
-    .attr("stroke", "white");
+    .attr('width', cell_size - 2)
+    .attr('height', cell_size - 2)
+    //.attr("stroke", "white");
     // TODO disabling for now
     //.on("mouseover", function (d) {
     //    div.transition()

@@ -23,12 +23,16 @@ function srswr_indices(n, N){
 function select_sample(indices) {
     // Selects the sample from the collection of grid cells
     // for now this marks the sample as white
+    console.log(indices.includes(1));
     console.log(indices);
     d3.selectAll('rect')
-        .attr('fill', function(d, i ){
-            if (i in indices) {return 'white'}
+        .attr('stroke', 'white')
+        .filter(function (d, i) {
+            return indices.includes(i)
         })
+        .attr('stroke', 'red')
 }
+
 
 
 
