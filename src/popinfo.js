@@ -15,9 +15,9 @@ var sigma = Math.sqrt(sigma2);
 
 var pop_data = [tau, mu, sigma2, sigma];
 
-d3.select('body')
-    .selectAll('p')
-    .data(pop_data)
-    .enter()
-    .append('p')
-    .text(function(d) {return d});
+//d3.select('body')
+//    .selectAll('p')
+//    .data(pop_data)
+//    .enter()
+//    .append('p')
+//    .text(function(d) {return d});
