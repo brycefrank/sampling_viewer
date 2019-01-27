@@ -2,9 +2,9 @@ import { sim_x } from './popsim';
 import * as d3 from 'd3';
 
 // Grid dimensions
-var grid_height = 40;
-var grid_width = 40;
-var cell_size = 8;
+var grid_height = 20;
+var grid_width = 20;
+var cell_size = 16;
 var cells = sim_x(grid_height, grid_width, 0, 10);
 
 var grid_buffer = 3;
@@ -30,7 +30,8 @@ export var color_scale = d3.scaleSequential().domain([d3.min(cells, function(a) 
 var svg = d3.select("body")
     .append("svg")
     .attr("width", cell_size * grid_width + grid_buffer)
-    .attr("height", cell_size * grid_height + grid_buffer);
+    .attr("height", cell_size * grid_height + grid_buffer)
+    .attr("id", "gridBody");
 
 // Tooltip
 var div = d3.select("body").append("div")

@@ -1,6 +1,6 @@
 // Samples from the grid.
 import { N} from './popinfo';
-import { grid, color_scale } from './grid';
+import { color_scale } from './grid';
 import * as d3 from 'd3';
 
 function random_int(Max) {
@@ -8,15 +8,23 @@ function random_int(Max) {
 }
 
 // Set up basic histogram figure
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
-    width = 300, height = 300;
+var margin = {top: 20, right: 20, bottom: 20, left: 20},
+    width = d3.select("#gridBody").attr('width'),
+    height = d3.select("#gridBody").attr('height');
 
-var hist_fig = d3.select('body')
+// This is the entire surface the histogram will exist on (including axes, etc.)
+var svg = d3.select('body')
     .append('svg')
     .attr('width', width)
-    .attr('height', width)
-    .append('g');
-    //.attr('transform', "translate(" + margin.left + "," + margin.top + ")");
+    .attr('height', height);
+
+// Reassign width and height to the interior
+width = width - margin.left - margin.right;
+height = height - margin.top - margin.bottom;
+
+var g = svg
+    .append('g') // Append the surface for the histogram bars, this exist inside of svg
+        .attr('transform', 'translate(' + margin.left + "," + margin.top + ")");
 
 function srswr_indices(n, N){
     // Generates simple random sampling indices (with replacement)
@@ -48,12 +56,22 @@ function select_sample(indices) {
 // TODO handle axes labels
 var mean_values = [];
 function update_histogram(sample) {
+    // Clear existing bars
+    svg.selectAll('rect')
+        .remove();
+    g.selectAll('g')
+        .remove();
+
     var mean = d3.mean(sample);
     mean_values.push(mean);
 
     var x = d3.scaleLinear()
         .domain(d3.extent(mean_values)).nice()
         .range([0, width]);
+
+    g.append('g')
+        .attr('transform', 'translate(0,' + height + ")")
+        .call(d3.axisBottom(x));
 
     var hist = d3.histogram()
         .domain(x.domain())
@@ -65,16 +83,14 @@ function update_histogram(sample) {
         .range([height, 0]);
 
     // First, delete any existing bars
-    hist_fig.selectAll('rect')
-        .remove();
 
-    hist_fig
+    svg
         .selectAll('rect')
         .data(hist)
         .enter().append('rect')
-        .attr('x', function (d) { return x(d.x0) + 1})
+        .attr('x', function (d) { return x(d.x0) + 1 + margin.left})
         .attr('width', function (d) { return d3.max([0, x(d.x1) - x(d.x0) - 1])})
-        .attr('y', function (d) {return y(d.length)})
+        .attr('y', function (d) {return y(d.length) + margin.top})
         .attr('height', function (d) {
             return y(0) - y(d.length)})
         .attr('fill', function (d) {return color_scale(d.x0)});
@@ -84,15 +100,21 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function iterate(n) {
-    for (var i = 0; i < n; i ++) {
+var stop_condition = false;
+async function iterate() {
+    while(stop_condition==false){
         sample_values = [];
         select_sample(srswr_indices(4, N));
         update_histogram(sample_values);
-        await sleep(100);
+        await sleep(300);
     }
 }
 
-var button = d3.select("body").append("button")
-    .text("button")
-    .on("click", function() {iterate(100)});
+d3.select("body").append("button")
+    .text("Start")
+    .on("click", function() {stop_condition=false; iterate();});
+
+d3.select("body").append("button")
+    .text("Stop")
+    .on("click", function() {stop_condition=true});
+
