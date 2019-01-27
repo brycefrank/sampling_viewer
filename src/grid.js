@@ -2,14 +2,12 @@ import { sim_x } from './popsim';
 import * as d3 from 'd3';
 
 // Grid dimensions
-var grid_height = 4;
-var grid_width = 4;
-var cell_size = 64;
+var grid_height = 40;
+var grid_width = 40;
+var cell_size = 8;
 var cells = sim_x(grid_height, grid_width, 0, 10);
+
 var grid_buffer = 3;
-
-
-
 function ndarray_to_array(nda) {
     var arr = [];
     var k = 0;
@@ -26,7 +24,7 @@ function ndarray_to_array(nda) {
 export var cells = ndarray_to_array(cells);
 
 // Cell coloring
-var color_scale = d3.scaleSequential().domain([d3.min(cells, function(a) {return d3.min(a) - 10}),
+export var color_scale = d3.scaleSequential().domain([d3.min(cells, function(a) {return d3.min(a) - 10}),
     d3.max(cells, function(a) {return d3.max(a)})]).interpolator(d3.interpolateViridis);
 
 var svg = d3.select("body")

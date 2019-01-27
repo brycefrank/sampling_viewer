@@ -4,6 +4,8 @@ import * as d3 from 'd3';
 // TODO these are design-based centric, is there a way to generalize?
 var flattened_cells = [].concat.apply([], cells);
 export var N = flattened_cells.length;
+export var pop_min = d3.min(flattened_cells);
+export var pop_max = d3.max(flattened_cells);
 
 // A very weird way to sum an array
 var tau = flattened_cells.reduce(function (a, b) {return a + b }, 0);
