@@ -4,10 +4,12 @@ import * as d3 from 'd3';
 // Grid dimensions
 var grid_height = 20;
 var grid_width = 20;
-var cell_size = 16;
+var cell_size = 20;
 var cells = sim_x(grid_height, grid_width, 0, 10);
 
 var grid_buffer = 3;
+var between = 3;
+
 function ndarray_to_array(nda) {
     var arr = [];
     var k = 0;
@@ -51,17 +53,22 @@ export var grid = svg.selectAll("rect")
     .attr("y", function(d, i) { if (i == 0) { j ++}; return (j % grid_width) * cell_size + grid_buffer; })
     .attr("x", function(d, i) { return (i % grid_height) * cell_size + grid_buffer; })
     .attr('fill', function (d) { return color_scale(d)})
-    .attr('width', cell_size - 6)
-    .attr('height', cell_size - 6)
+    .attr('width', cell_size - between)
+    .attr('height', cell_size - between)
     //.attr("stroke", "white");
     // TODO disabling for now
-    //.on("mouseover", function (d) {
-    //    div.transition()
-    //        .duration(200)
-    //        .style("opacity", 0.9);
-    //    div .html(d)
-    //        .style("left", (d3.event.pageX) + "px")
-    //        .style("top", (d3.event.pageY - 28) + "px")
-    //});
+    .on("mouseover", function (d) {
+        div.transition()
+            .duration(30)
+            .style("opacity", 0.9);
+        div .html(d)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px")
+    })
+    .on("mouseout", function(d){
+        div.transition()
+            .duration(30)
+            .style("opacity", 0)
+    });
 
 

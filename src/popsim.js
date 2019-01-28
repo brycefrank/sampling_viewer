@@ -73,7 +73,7 @@ export function sim_x(height, width, mu, sigma) {
 
     // Round to nearest tenth
     for (var i = 0; i < x.shape[0]; i ++) {
-        x.set(i, 0, (Math.round(x.get(i, 0) * 100) / 100) + 50);
+        x.set(i, 0, (Math.round((x.get(i, 0) * 100) / 100) + 50));
     }
 
     return(x)

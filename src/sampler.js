@@ -40,7 +40,7 @@ var sample_values = [];
 function select_sample(indices) {
     // Selects the sample from the collection of grid cells
     d3.selectAll('rect')
-        .attr('stroke', 'white')
+        .attr('stroke', 'gray')
         .attr('stroke-width', 2)
         .filter(function (d, i) {
             if (indices.includes(i)){
@@ -56,7 +56,7 @@ function select_sample(indices) {
 // TODO handle axes labels
 var mean_values = [];
 function update_histogram(sample) {
-    // Clear existing bars
+    // Clear existing bars, x axis
     svg.selectAll('rect')
         .remove();
     g.selectAll('g')
@@ -82,8 +82,6 @@ function update_histogram(sample) {
             return d.length })]).nice()
         .range([height, 0]);
 
-    // First, delete any existing bars
-
     svg
         .selectAll('rect')
         .data(hist)
@@ -104,7 +102,7 @@ var stop_condition = false;
 async function iterate() {
     while(stop_condition==false){
         sample_values = [];
-        select_sample(srswr_indices(4, N));
+        select_sample(srswr_indices(10, N));
         update_histogram(sample_values);
         await sleep(300);
     }

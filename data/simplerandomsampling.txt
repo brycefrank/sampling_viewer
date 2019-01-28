@@ -1,0 +1,5 @@
+Text
+"One of the most straightforward sampling methods is simple random sampling (SRS).",
+"SRS comes in two forms - with replacement (SRSWR) and without replacement (SRSWOR). We will examine both in sequence and then compare their performance.",
+"SRSWR assigns equal probabilities of selection to each grid cell. Enter in a sample size in the box above and see how the selection probabilities change.",
+"The selection probability answers the question for each grid cell: what is the probability that this grid cell will be selected in a sample of size n?"

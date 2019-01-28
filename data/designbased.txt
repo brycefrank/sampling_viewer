@@ -1,0 +1,6 @@
+Text
+"We will begin with design-based inference.",
+"Design-based inference generates estimates using a randomization procedure to select samples.",
+"Each square above will be assigned a selection probability and a random sample will be generated according to those probabilities.",
+"This randomization procedure gurantees certain behaviors from a function of our sample, called an estimator.",
+"An estimator for the population mean, mu, is the sample mean, y bar. And is the one we will focus on in this section."
