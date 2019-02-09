@@ -14,21 +14,56 @@ export var sampling_designs = {
     'srswor': {
         'func': srswor,
         'name': 'Simple Random Sampling without Replacement'
+    },
+    'sys': {
+        'func': sys,
+        'name': 'Systematic Sampling with Random Start'
     }
 };
 
 function srswor(n, N) {
-    console.log('srswor')
-}
+    var srs_ix = [];
 
-function srswr(n, N){
-    // Generates simple random sampling indices (with replacement)
-    var srs_wr = [];
-    for (var i = 0; i < n; i ++){
-        srs_wr[i] = random_int(N);
+    var i = 0;
+    while (i < n){
+        var ix = random_int(N);
+        if (!(srs_ix.includes(ix))) {
+            srs_ix[i] = ix;
+            i += 1;
+        }
     }
 
-    return srs_wr;
+    return srs_ix;
+}
+
+/** Generates simple random sampling indices (with replacement) */
+function srswr(n, N) {
+    var srs_ix = [];
+    for (var i = 0; i < n; i ++){
+        srs_ix[i] = random_int(N);
+    }
+
+    return srs_ix;
+}
+
+function sys(n, N) {
+    var k = Math.round(N / n);
+    console.log(k);
+    var random_start = random_int(k);
+
+
+    var sys_ix = [random_start];
+
+    var i = 1;
+    while (i < n) {
+        sys_ix[i] = sys_ix[i-1] + k;
+        i += 1;
+    }
+
+
+    return sys_ix;
+
+
 }
 
 /** Selects the sample from the collection of grid cells and highlights selected samples */

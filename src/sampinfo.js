@@ -82,40 +82,45 @@ function sleep(ms) {
 }
 
 var stop_condition = false;
-async function iterate() {
+async function start_sample(sample_design) {
     while(stop_condition==false){
-        var sample_values = select_sample(sampling_designs['srswr'].func(10, N));
+        var sample_values = select_sample(sampling_designs[sample_design].func(30, N));
         update_histogram(sample_values);
         await sleep(100);
     }
 }
 
+function reset_samp_info() {
+    d3.selectAll('rect')
+        .attr('stroke', 'none');
+    svg.selectAll('rect')
+        .remove();
+    mean_values = [];
+}
+
 d3.select("body").append("button")
     .text("Start")
-    .on("click", function() {stop_condition=false; iterate();});
+    .on("click", function() {stop_condition=false; start_sample(selectValue);});
 
 d3.select("body").append("button")
     .text("Stop")
     .on("click", function() {stop_condition=true});
 
+d3.select("body").append("button")
+    .text("Reset")
+    .on("click", function() {reset_samp_info()});
+
 // TODO set up dropdown menu
+var selectValue = 'srswr';
 d3.select('body').append('select')
     .attr('class', 'select')
-    .on('change', onchange)
+    .on('change', function() {
+        selectValue = d3.select('select').property('value')
+    })
     .selectAll('option')
-    .data(sampling_designs.map(function (d) {
-        return d.name;
-    }))
+    .data(Object.keys(sampling_designs))
     .enter().append('option')
     .text(function (d) {
-        console.log(d)
-    })
-    .attr('value', function(d, i) {
-        return i;
+        return d
     });
 
-function onchange() {
-    var selectValue = d3.select('select').property('value')
-    d3.select('body').append('p')
-        .text(selectValue + 'thing')
-}
