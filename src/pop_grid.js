@@ -16,7 +16,6 @@ export function popGrid () {
 
     function popgrid(group) {
         group.each(render)
-        
     }
 
     /**
