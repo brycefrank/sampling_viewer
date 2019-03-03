@@ -1,3 +1,4 @@
-Chapter,
-"introduction.txt"
-"population.txt"
+Text,File,
+"Chapter 1: Introduction",introduction.txt
+"Chapter 2: The Population",population.txt
+"Chapter 3: Simple Random Sampling",simplerandomsampling.txt

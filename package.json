@@ -18,6 +18,7 @@
     "ndarray-gemm": "^1.0.0",
     "ndarray-scratch": "^1.2.0",
     "ndarray-unpack": "^1.0.0",
+    "static-eval": ">=2.0.0",
     "webpack": "^4.28.4"
   },
   "devDependencies": {

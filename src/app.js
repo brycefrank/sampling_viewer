@@ -25,7 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
           .datum(sim_x(popgrid.num_cells_x(), popgrid.num_cells_y(), 100, 80))
           .call(popgrid);
       d3.select('#dialogueBox1')
-          .call(dialoguebox);
+      //FIXME probably a more straightforward way for this, consider accessing popgrid dimensions
+          .style('width', popgrid.num_cells_x() * popgrid.cell_width()+'px')
+          .style('height', 200+'px')
+          .call(dialoguebox)
    }
 
    function addListeners() {
