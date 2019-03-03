@@ -1,0 +1,13 @@
+Text,Event
+"Before we can collect a sample, we need to develop a rigorous definition of the population, i.e. if we collected a sample, what would the individual elements of the sample be?",
+"A population is a set of elements that can be selected into a sample. Consider the above set of cells, arranged into a grid.",
+"The set of cells that compose the grid is our population of interest. We will consider this population to describe a forest, where each grid cell is a small area of land. On this small area of land we can measure the total biomass (i.e. the weight of the vegetation) for each grid cell. The value of each cell represents this weight. Use your mouse to hover over a cell to examine its biomass.",highlight_grid()
+"As samplers, we must consider what information we would like to know about our population.",
+"Here, many values are possible, including typical values such as the total biomass, mean biomass, or variance of biomass.",
+"We could even consider more esoteric values, like the maximum value of biomass in the cell (i.e. order statistics), the 95th percentile of biomass (i.e. quantiles), etc.",
+"For now we will consider only the total biomass. That is, we wish to know what the value of all the biomass added together in the population.",
+"In this scenario we know this information. The value of every cell is known, therefore we can simply add up the biomass values to find out the total.",
+"When you click Next we will add up the cell values. Notice the plot that appears to the right, the black line indicates the value of the total",
+"",grid.add_up_total(),
+"Notice that the black line represents a single value, i.e. it is fixed. This is not a given. Other sampling paradigms treat the total as a random variable.",
+"The reason that the black line is fixed is because all of the population values are fixed, and vice versa."

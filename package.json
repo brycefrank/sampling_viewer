@@ -2,7 +2,7 @@
   "name": "sae_d3",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "scripts": {
     "build": "webpack",
     "start": "npm run build && webpack-dev-server --port=8000"

@@ -6,7 +6,7 @@ export function popGrid () {
         num_cells_y: 10,
         cell_width: 10,
         between: 2,
-        buffer: 3
+        buffer: 4
     };
 
     var local = {
@@ -14,11 +14,15 @@ export function popGrid () {
         dimensions: d3.local()
     };
 
-    function grid(group) {
+    function popgrid(group) {
         group.each(render)
         
     }
-    
+
+    /**
+     * Renders the main sampling popgrid.
+     * @param data A one dimensional array of cell values.
+     */
     function render(data) {
         var context,
             color_scale,
@@ -33,8 +37,8 @@ export function popGrid () {
 
         gridBody = d3.selectAll('#grid1')
             .append('svg')
-            .attr('width', o.cell_width * o.num_cells_x)
-            .attr('height', o.cell_width * o.num_cells_y);
+            .attr('width', o.cell_width * o.num_cells_x + 2 * o.buffer)
+            .attr('height', o.cell_width * o.num_cells_y + 2 * o.buffer);
 
         var j = -1;
         gridBody
@@ -49,6 +53,30 @@ export function popGrid () {
             .attr('width', o.cell_width - o.between)
             .attr('height', o.cell_width - o.between)
     }
+
+    /**
+     * Highlights the cells in the popgrid for a given index of samples.
+     * @param indices - A one dimensional array of indices to highlight.
+     */
+    function highlight_sample(indices) {
+
+    }
+
+    //** An animation that adds up the total
+    popgrid.add_up_total = function() {
+        var t = d3.transition()
+            .duration(750)
+            .ease(d3.easeLinear);
+
+        d3.selectAll('rect')
+            .transition()
+            .delay(function(d, i){return i*3})
+            .duration(100)
+            .attr('stroke', 'black')
+            .transition()
+            .duration(5)
+            .attr('stroke', 'none')
+    };
 
     function dataAccess(key) {
         return function(d) {
@@ -72,26 +100,26 @@ export function popGrid () {
     }
 
     // Getters and Setters
-    grid.num_cells_x = function(_) {
+    popgrid.num_cells_x = function(_) {
         if (!arguments.length) {return o.num_cells_x;}
         o.num_cells_x = _;
-        return grid;
+        return popgrid;
     };
 
-    grid.num_cells_y = function(_) {
+    popgrid.num_cells_y = function(_) {
         if (!arguments.length) {return o.num_cells_y;}
         o.num_cells_y = _;
-        return grid;
+        return popgrid;
     };
 
 
-    grid.cell_width = function(_) {
+    popgrid.cell_width = function(_) {
         if (!arguments.length) {return o.cell_width;}
         o.cell_width = _;
-        return grid;
+        return popgrid;
     };
 
-    grid.dimensions = function(context, _) {
+    popgrid.dimensions = function(context, _) {
         var returnArray;
         if (typeof _ === 'undefined' ) {
             returnArray = context.nodes()
@@ -99,10 +127,10 @@ export function popGrid () {
             return context._groups[0] instanceof NodeList ? returnArray : returnArray[0];
         }
         context.each(function() {local.dimensions.set(this, _);});
-        return grid;
+        return popgrid;
     };
 
-    grid.label = function(context, _) {
+    popgrid.label = function(context, _) {
         var returnArray;
         if (typeof _ === 'undefined' ) {
             returnArray = context.nodes()
@@ -110,8 +138,8 @@ export function popGrid () {
             return context._groups[0] instanceof NodeList ? returnArray : returnArray[0];
         }
         context.each(function() {local.label.set(this, _);});
-        return grid;
+        return popgrid;
     };
 
-    return grid;
+    return popgrid;
 }

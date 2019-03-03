@@ -61,6 +61,7 @@ function inverse_dist_matrix(dist_matrix, c=0) {
     for (var i = 0; i < dist_matrix.shape[0]; i++){
         for (var j = 0; j < dist_matrix.shape[1]; j++) {
             if (i != j) {
+                // TODO implement exponential covariance function
                 dist_matrix.set(i, j, 1 / dist_matrix.get(i, j))
             }
             else {

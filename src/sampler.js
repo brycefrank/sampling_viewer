@@ -1,5 +1,4 @@
 // Samples from the grid.
-import { color_scale } from './grid';
 import * as d3 from 'd3';
 
 function random_int(Max) {
@@ -67,6 +66,7 @@ function sys(n, N) {
 }
 
 /** Selects the sample from the collection of grid cells and highlights selected samples */
+// TODO move responsibility of highlighting to pop_grid
 export function select_sample(indices, highlight_color = 'black') {
     var sample_values = [];
 
