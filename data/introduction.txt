@@ -1,0 +1,7 @@
+Text,Event,
+"Welcome to the Sampling Viewer. Click the forward button to continue.",
+"Sampling Viewer is an interactive data visualization intended to demonstrate concepts in finite population sampling.",
+"Sampling is an important subject for many fields ranging from public health to environmental science. Using tools available from mathematical statistics, we are able to obtain estimates of populations and assess the reliability of those estimates.",
+"The objective of sampling in general is to produce point estimates for values of our population, called population parameters, and assess the reliability of those point estimates.",
+"The way in which point estimates and their reliability are conceptualized and calculated form the foundations of sampling theory.",
+"Sampling Viewer will walk you through a particular paradigm of sampling, called design-based inference. This is arguably the most dominant paradigm used today.",

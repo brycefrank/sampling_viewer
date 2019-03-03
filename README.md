@@ -1,20 +1,12 @@
 <img src="docs/logo.png" alt="alt text" width="100" height="100" align="left">
-Sampling Viewer is a small interactive Javascript visualization that communicates the principles of finite population
-sampling in an intuitive and accessible fashion. The following concepts are demonstrated:
+Sampling Viewer is a small educational visualization intended to introduce concepts of finite population sampling
+and inference in an intuitive and accessible fashion suitable for undergraduate courses. 
+We especially focus on sampling in a spatial context.
 
-### Sampling Designs
+Sampling Viewer addresses the following concepts:
 
-- [x] Simple Random Sampling
-- [ ] Systematic Sampling
-- [ ] Stratified Random Sampling
-- [ ] Cluster Sampling
-- [ ] Balanced Sampling
-- [ ] Spatially Balanced Sampling
-
-### Estimators
-
-- [ ] Horvitz-Thompson
-- [ ] Generalized Regression Estimator
-- [ ] Variance Estimation
-
-This package is currently under development, with a minimal working version planned for the end of **February 2019**.
+- Point Estimates
+- Standard Error
+- Confidence Intervals
+- Bias
+- Efficiency

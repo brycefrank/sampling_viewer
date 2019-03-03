@@ -4,6 +4,19 @@ var gemm = require('ndarray-gemm');
 var cholesky = require('ndarray-cholesky-factorization');
 var pool = require('ndarray-scratch');
 
+function ndarray_to_array(nda) {
+    var arr = [];
+    var k = 0;
+    for (var i = 0; i < nda.shape[0]; i ++) {
+        arr.push([]);
+        for (var j = 0; j < nda.shape[1]; j ++) {
+            arr[i].push(nda.get(k, 0));
+            k += 1;
+        }
+    }
+    return arr
+}
+
 function randn_bm() {
     var u = 0, v = 0;
     while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
@@ -48,6 +61,7 @@ function inverse_dist_matrix(dist_matrix, c=0) {
     for (var i = 0; i < dist_matrix.shape[0]; i++){
         for (var j = 0; j < dist_matrix.shape[1]; j++) {
             if (i != j) {
+                // TODO implement exponential covariance function
                 dist_matrix.set(i, j, 1 / dist_matrix.get(i, j))
             }
             else {
@@ -76,5 +90,5 @@ export function sim_x(height, width, mu, sigma) {
         x.set(i, 0, (Math.round((x.get(i, 0) * 100) / 100) + 50));
     }
 
-    return(x)
+    return(ndarray_to_array(x))
 }

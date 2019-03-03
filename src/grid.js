@@ -47,16 +47,13 @@ export var grid = svg.selectAll("rect")
     .enter()
     .selectAll("rect") // these
     .data( function(d) { return d; } ) //lines
-    .enter() //text displays normally
+    .enter()
     .append("rect")
-    //.text( function(d) { return d; } )
     .attr("y", function(d, i) { if (i == 0) { j ++}; return (j % grid_width) * cell_size + grid_buffer; })
     .attr("x", function(d, i) { return (i % grid_height) * cell_size + grid_buffer; })
     .attr('fill', function (d) { return color_scale(d)})
     .attr('width', cell_size - between)
     .attr('height', cell_size - between)
-    //.attr("stroke", "white");
-    // TODO disabling for now
     .on("mouseover", function (d) {
         div.transition()
             .duration(30)
