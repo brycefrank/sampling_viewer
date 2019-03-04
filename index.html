@@ -5,10 +5,27 @@
         font-family: Arial
     }
 
+    .grid {
+        float:left;
+    }
+
+    .samplingDist {
+        float:right;
+    }
+
+    .dialogueBox {
+        float:left;
+        position: relative;
+    }
+
+    .controls {
+        position: absolute;
+        bottom:0;
+    }
+
     div.chapterTitle {
         font-weight: bold
     }
-
 
     div.tooltip {
         position: absolute;
@@ -29,13 +46,16 @@
 </head>
 <body>
 <div class="grid" id="grid1"></div>
+<div class="samplingDist" id="samplingDist1"></div>
 <div class="dialogueBox" id="dialogueBox1">
     <div class="chapterTitle" id="chapterTitle1"></div>
     <div class="dialogueBody" id="dialogueBody1"></div>
+    <div class="controls">
+        <button id="sampleButton1">Sample</button>
+        <button id="backwardButton1">Backward</button>
+        <button id="forwardButton1">Forward</button>
+    </div>
 </div>
-<button id="sampleButton1">Sample</button>
-<button id="backwardButton1">Backward</button>
-<button id="forwardButton1">Forward</button>
 <script src="build/project.bundle.js"></script>
 
 </body>

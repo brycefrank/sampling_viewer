@@ -51,6 +51,7 @@ export function popGrid () {
             .attr('fill', function (d) { return color_scale(d)})
             .attr('width', o.cell_width - o.between)
             .attr('height', o.cell_width - o.between)
+            .attr('value', function(d) { return d })
     }
 
     /**
@@ -67,7 +68,8 @@ export function popGrid () {
             .duration(750)
             .ease(d3.easeLinear);
 
-        d3.selectAll('rect')
+        d3.select('#grid1')
+            .selectAll('rect')
             .transition()
             .delay(function(d, i){return i*3})
             .duration(100)
