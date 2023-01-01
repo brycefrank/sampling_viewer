@@ -19,12 +19,12 @@
     "ndarray-scratch": "^1.2.0",
     "ndarray-unpack": "^1.0.0",
     "static-eval": ">=2.0.0",
-    "webpack": "^4.28.4"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "raw-loader": "^1.0.0",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1",
+    "raw-loader": "^4.0.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^3.1.14"
   }
 }
